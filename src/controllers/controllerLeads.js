@@ -4,7 +4,7 @@ const bot = require('../services/telegramBot');
 
 module.exports = {
     async catch(request, response) {
-        bot.initialize('1359045269:AAHyP4kSx2LaPcZHAKiLGjDzRD-SFzJRfbg');
+        bot.initialize(process.env.TOKEN);
         const { name, email, whatsapp } = request.body;
         var lead = await connection('leads').select('id')
             .where('email', email)
@@ -23,7 +23,7 @@ module.exports = {
                 email,
                 whatsapp
             })
-            await bot.sendMessage('-1001249886116', `Boa tarde chefinho, um novo usuário chamada(o) ${name} foi capturada(o), ao todo já temos ${countLeads[0].count} leads.`);
+            await bot.sendMessage(process.env.ID_TELEGRAM, `Boa tarde chefinho, um novo usuário chamada(o) ${name} foi capturada(o), ao todo já temos ${countLeads[0].count} leads.`);
             return response.status('200').json({ message: "cadastro ok" })
         }
         else {
