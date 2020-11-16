@@ -23,7 +23,7 @@ module.exports = {
                 email,
                 whatsapp
             })
-            await bot.sendMessage(process.env.ID_TELEGRAM, `Boa tarde chefinho, um novo usuário chamada(o) ${name} foi capturada(o), ao todo já temos ${countLeads[0].count} leads.`);
+            await bot.sendMessage(process.env.ID_TELEGRAM, `Eae seus aligenigenas, um novo usuário chamada(o) ${name} foi capturada(o), ao todo já temos ${countLeads[0].count} leads.`);
             return response.status('200').json({ message: "cadastro ok" })
         }
         else {
