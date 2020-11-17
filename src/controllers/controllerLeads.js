@@ -10,12 +10,6 @@ module.exports = {
             .where('email', email)
             .first();
 
-        var countLeads = await connection('leads').count('name');
-
-        if (countLeads[0].count == 0) {
-            countLeads[0].count = 1;
-        };
-
         if (!lead) {
             await connection('leads').insert({
                 id: uuid(),
@@ -23,6 +17,7 @@ module.exports = {
                 email,
                 whatsapp
             })
+            var countLeads = await connection('leads').count('name');
             await bot.sendMessage(process.env.ID_TELEGRAM, `Eae seus aligenigenas, um novo usuário chamada(o) ${name} foi capturada(o), ao todo já temos ${countLeads[0].count} leads.`);
             return response.status('200').json({ message: "cadastro ok" })
         }
